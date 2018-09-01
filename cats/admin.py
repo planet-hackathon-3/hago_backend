@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import CatImage, Tip
 
-# Register your models here.
+admin.site.register(CatImage)
+admin.site.register(Tip)
