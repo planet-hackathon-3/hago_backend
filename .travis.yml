@@ -2,6 +2,9 @@ language: python
 python:
   - "3.6"
 
+services:
+  - postgres
+
 env:
   global:
     - DJANGO_SETTINGS_MODULE=hago.settings.local
@@ -10,6 +13,7 @@ env:
 install:
   - pip install -U pip
   - pip install -r requirements/base.txt
+  - psql -c 'create database hago;' -U postgres
   - python manage.py migrate --noinput
 
 # command to run flake8
