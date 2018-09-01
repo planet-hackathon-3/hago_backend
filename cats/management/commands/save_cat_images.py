@@ -10,12 +10,13 @@ class Command(BaseCommand):
         if args:
             raise CommandError("Command doesn't accept any arguments")
 
-        paylaod = {
+        payload = {
+            'mime_types': 'jpg,png',
             'limit': 100,
         }
         cat_image_id_list = list(map(str, CatImage.objects.values_list('id_for_api', flat=True)))
 
-        response = requests.get('https://api.thecatapi.com/v1/images/search', params=paylaod).json()
+        response = requests.get('https://api.thecatapi.com/v1/images/search', params=payload).json()
         cat_image_list = []
         for image_json in response:
             if not image_json['id'] in cat_image_id_list:

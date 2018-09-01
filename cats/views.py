@@ -11,13 +11,17 @@ from cats.serializers import CatImageSerializer
 
 class RandomCatImageAPI(APIView):
     def get(self, request):
-        limit = request.GET.get('limit', 30)
+        limit = int(request.GET.get('limit', 30))
 
         cached_list = cache.get('random_cat_image_list')
         if not cached_list:
+            # caching 안된 경우
             cat_image_id_list = list(CatImage.objects.values_list('id', flat=True))
             random_image_id_list = random.sample(cat_image_id_list, limit)
             cached_list = CatImage.objects.filter(id__in=random_image_id_list)
+        else:
+            # caching 된 경우
+            cached_list = cached_list[:limit]
 
         serializer = CatImageSerializer(cached_list, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
