@@ -37,16 +37,17 @@ class CatImageDetailAPI(APIView):
 
 class LikeCatImage(APIView):
     def post(self, request, image_id):
-        cat_image = get_object_or_404(CatImage, id=image_id)
-        cat_image.like_count += 1
-        cat_image.save(update_fields=['like_count'])
+        try:
+            cat_image = get_object_or_404(CatImage, id=image_id)
+            cat_image.like_count += 1
+            cat_image.save(update_fields=['like_count'])
+        except Exception as e:
+            return Response(data={'success': False}, status=status.HTTP_200_OK)
         return Response(data={'success': True}, status=status.HTTP_200_OK)
 
 
 class RandomTipAPI(APIView):
     def get(self, request):
-        tips = list(Tip.objects.values_list('id', flat=True))
-        random_tip_id = random.choice(tips)
-        random_tip = Tip.objects.get(id=random_tip_id)
+        random_tip = Tip.objects.order_by('?').first()
         serializer = TipSerializer(random_tip)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
