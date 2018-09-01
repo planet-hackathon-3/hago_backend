@@ -13,3 +13,4 @@ redis==2.10.6
 requests==2.19.1
 urllib3==1.23
 psycopg2-binary==2.7.5
+django-cors-headers==2.4.0

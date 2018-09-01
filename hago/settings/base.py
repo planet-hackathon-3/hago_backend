@@ -43,11 +43,13 @@ INSTALLED_APPS = [
 
     # Third-Party Apps
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -123,6 +125,7 @@ USE_L10N = True
 USE_TZ = True
 
 CAT_IMAGE_API_KEY = '3f086b82-2020-48f7-938b-f30d824fa055'
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
