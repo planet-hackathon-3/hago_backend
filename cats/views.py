@@ -1,5 +1,3 @@
-import random
-
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404
 from rest_framework import status
