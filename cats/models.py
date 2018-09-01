@@ -13,6 +13,3 @@ class CatImage(TimeStampedModel):
 
 class Tip(TimeStampedModel):
     content = models.TextField('내용')
-
-    def __str__(self):
-        return self.id

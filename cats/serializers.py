@@ -6,3 +6,8 @@ class CatImageSerializer(serializers.Serializer):
     id_for_api = serializers.CharField()
     url = serializers.URLField()
     like_count = serializers.IntegerField()
+
+
+class TipSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    content = serializers.CharField()
