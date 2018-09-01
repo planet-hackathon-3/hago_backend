@@ -17,9 +17,7 @@ class RandomCatImageList(APIView):
         cached_list = cache.get('random_cat_image_list')
         if not cached_list:
             # caching 안된 경우
-            cat_image_id_list = list(CatImage.objects.values_list('id', flat=True))
-            random_image_id_list = random.sample(cat_image_id_list, limit)
-            cached_list = CatImage.objects.filter(id__in=random_image_id_list)
+            cached_list = list(CatImage.objects.order_by('?')[:limit])
         else:
             # caching 된 경우
             cached_list = cached_list[:limit]

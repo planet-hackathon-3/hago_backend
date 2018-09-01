@@ -12,9 +12,7 @@ class Command(BaseCommand):
             raise CommandError("Command doesn't accept any arguments")
 
         try:
-            cat_image_id_list = list(CatImage.objects.values_list('id', flat=True))
-            random_image_id_list = random.sample(cat_image_id_list, 30)
-            cat_images = CatImage.objects.filter(id__in=random_image_id_list)
+            cat_images = list(CatImage.objects.order_by('?')[:30])
             cache.set('random_cat_image_list', cat_images, 60 * 30)
         except Exception as e:
             self.stderr.write(f"Error occurred: {str(e)}")

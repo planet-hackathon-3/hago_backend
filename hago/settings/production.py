@@ -2,7 +2,7 @@ import dj_database_url
 
 from .base import *  # NOQA
 
-DEBUG = True
+DEBUG = False
 
 # Database
 db_from_env = dj_database_url.config()
