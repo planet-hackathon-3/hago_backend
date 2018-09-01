@@ -1,4 +1,4 @@
-# NYAN
+# HAGO
 > Planet Hackathon Team 3
 
 ## Installation
