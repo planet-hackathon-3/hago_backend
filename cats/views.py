@@ -10,7 +10,7 @@ from cats.models import CatImage, Tip
 from cats.serializers import CatImageSerializer, TipSerializer
 
 
-class RandomCatImageAPI(APIView):
+class RandomCatImageList(APIView):
     def get(self, request):
         limit = int(request.GET.get('limit', 30))
 
@@ -28,7 +28,7 @@ class RandomCatImageAPI(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
-class CatImageDetailAPI(APIView):
+class CatImageDetail(APIView):
     def get(self, request, image_id):
         cat_image = get_object_or_404(CatImage, id=image_id)
         serializer = CatImageSerializer(cat_image)
@@ -46,7 +46,7 @@ class LikeCatImage(APIView):
         return Response(data={'success': True}, status=status.HTTP_200_OK)
 
 
-class RandomTipAPI(APIView):
+class RandomTip(APIView):
     def get(self, request):
         random_tip = Tip.objects.order_by('?').first()
         serializer = TipSerializer(random_tip)
