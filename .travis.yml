@@ -1,0 +1,17 @@
+language: python
+python:
+  - "3.6"
+
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE=hago.settings
+
+# command to install dependencies
+install:
+  - pip install -U pip
+  - pip install -r requirements.txt
+  - python manage.py migrate --noinput
+
+# command to run flake8
+script:
+  - flake8 ./
