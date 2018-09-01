@@ -4,12 +4,12 @@ python:
 
 env:
   global:
-    - DJANGO_SETTINGS_MODULE=hago.settings
+    - DJANGO_SETTINGS_MODULE=hago.settings.local
 
 # command to install dependencies
 install:
   - pip install -U pip
-  - pip install -r requirements.txt
+  - pip install -r requirements/base.txt
   - python manage.py migrate --noinput
 
 # command to run flake8
