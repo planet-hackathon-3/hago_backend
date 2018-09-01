@@ -1,6 +1,7 @@
 import random
 
 from django.core.cache import cache
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -25,3 +26,18 @@ class RandomCatImageAPI(APIView):
 
         serializer = CatImageSerializer(cached_list, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class CatImageDetailAPI(APIView):
+    def get(self, request, image_id):
+        cat_image = get_object_or_404(CatImage, id=image_id)
+        serializer = CatImageSerializer(cat_image)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class LikeCatImage(APIView):
+    def post(self, request, image_id):
+        cat_image = get_object_or_404(CatImage, id=image_id)
+        cat_image.like_count += 1
+        cat_image.save(update_fields=['like_count'])
+        return Response(data={'success': True}, status=status.HTTP_200_OK)
