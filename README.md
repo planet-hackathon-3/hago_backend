@@ -1,5 +1,7 @@
 # HAGO
+[![Build Status](https://travis-ci.org/planet-hackathon-3/hago_backend.svg?branch=master)](https://travis-ci.org/planet-hackathon-3/hago_backend)
 > Planet Hackathon Team 3
+
 
 ## Installation
 
